@@ -1,48 +1,57 @@
-'use client'
-
+'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import HamburgerMenu from './HamburgerMenu'; // Import the HamburgerMenu component
+import { Menu, X } from 'lucide-react';
+import NavLink from './NavLink';
+import MenuOverlay from './MenuOverlay';
 
-interface Link {
-  text: string;
-  url: string;
-}
+const navItems = [
+  { label: 'Vaccinationer & laser', link: '/' },
+  { label: 'Priser', link: '/priser' },
+  { label: 'Kontakta Oss', link: '/kontakta' },
+];
 
 const Navbar: React.FC = () => {
-  const links: Link[] = [
-    { text: 'Hem', url: '/' },
-    { text: 'Om', url: '/om' },
-    { text: 'Priser', url: '/priser' },
-    { text: 'Kontakta oss', url: '/kontakta' },
-  ];
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <nav className='bg-white p-4 px-10 font-medium text-lg'>
-      <div className='flex justify-between items-center'>
+    <nav className='py-3'>
+      <div className='flex px-5 justify-between items-center md:px-10'>
         <Link href={'/'}>
-          <Image className='' src='favicon.svg' alt='' width='80' height='80' />
+          <Image
+            src={'/favicon.svg'}
+            alt={'AO'}
+            width={80}
+            height={80}
+          />
         </Link>
-        <div className='lg:hidden'>
-          <HamburgerMenu isOpen={isMenuOpen} onClick={toggleMenu} />
-        </div>
-        <ul className={`lg:flex ${isMenuOpen ? 'block' : 'hidden'}`}>
-          {links.map((link, index) => (
-            <li className='mx-6' key={index}>
-              <Link href={link.url} className='hover:text-secondary'>
-                {link.text}
-              </Link>
+        <ul className='hidden md:flex justify-center items-center'>
+          {navItems.map((item, index) => (
+            <li
+              key={index}
+              className='text-md font-semibold ml-12 text-xl  hover:text-secondary'
+            >
+              <NavLink href={item.link} title={item.label} />
             </li>
           ))}
         </ul>
+        <div className='mobile-menu block md:hidden'>
+          <button
+            onClick={() => {
+              setNavbarOpen(!navbarOpen); // Toggle the state
+            }}
+            className='flex items-center p-3'
+          >
+            {navbarOpen ? (
+              <X width={40} height={40} />
+            ) : (
+              <Menu width={40} height={40} />
+            )}
+          </button>
+        </div>
       </div>
+      {navbarOpen ? <MenuOverlay toggleNavbar={setNavbarOpen} links={navItems} /> : null}
     </nav>
   );
 };

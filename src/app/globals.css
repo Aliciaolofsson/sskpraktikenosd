@@ -4,5 +4,16 @@
 @tailwind utilities;
 
 * {
-font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
+  list-style: none;
 }
+
+input, textarea {
+  border-radius: 5px;
+  padding: 0.4rem;
+  font-size: 14px;
+  color: black;
+  font-weight: normal;
+}
+
+
