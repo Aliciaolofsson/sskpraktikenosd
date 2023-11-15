@@ -1,57 +1,73 @@
-import React from 'react';
+'use client';
+import LaserPriceList from '@/app/components/LaserPriceList';
+import PrescriptionPriceList from '@/app/components/PrescriptionPriceList';
+import TabButton from '@/app/components/TabButton';
+import VaccinationPriceList from '@/app/components/VaccinationPriceList';
+import { useState, useTransition } from 'react';
 
-const vaccinePriceList = [
-  { name: 'Hepatit A', price: 525 },
-  { name: 'Hepatit B', price: 495 },
-  { name: 'Hepatit A + B', price: 690 },
-  { name: 'Hepatit A + B Barn', price: 550 },
-  { name: 'Grundskydd (stelkramp, polio, difteri, kikhosta)', price: 590 },
-  { name: 'Tyfoidfeber', price: 475 },
-  { name: 'Gula febern', price: 1100 },
-  { name: 'Japansk encefalit', price: 1490 },
-  { name: 'MeningoKocker', price: 850 },
-  { name: 'Bältros', price: 2450 },
-  { name: 'TBE (fästing) Vuxen', price: 470 },
-  { name: 'TBE Barn', price: 450 },
-  { name: 'PneumoKocker', price: 450 },
-  { name: 'Influensa', price: 250 },
-  { name: 'Kolera (Dukoral)', price: 540 },
+interface TAB_DATA {
+  content: React.FC;
+}
+const TAB_DATA = [
+  {
+    title: 'VaccinationPricing',
+    id: 'vaccinationPricing',
+    content: <VaccinationPriceList />,
+  },
+  {
+    title: 'PrescriptionPricing',
+    id: 'prescriptionPricing',
+    content: <PrescriptionPriceList />,
+  },
+  {
+    title: 'LaserPricing',
+    id: 'laserPricing',
+    content: <LaserPriceList />,
+  },
 ];
 
 export default function Price() {
+  const [tab, setTab] = useState('vaccinationPricing');
+  const [isPending, startTransition] = useTransition();
+
+  const handleTabChange = (id: React.SetStateAction<string>) => {
+    startTransition(() => {
+      setTab(id);
+    });
+  };
+
+  const currentTab = TAB_DATA.find((t) => t.id === tab);
+
   return (
-    <div>
-      <div className='flex flex-col items-center my-20'>
-        <ul className='grid grid-col-2 space-y-7'>
-         
-        </ul>
+    <div className='flex items-center flex-col p-5 my-5'>
+      <h1 className='text-4xl font-bold my-12'>Priser för våra tjänster</h1>
+      <div className='flex'>
+        <TabButton
+          active={tab === 'vaccinationPricing'}
+          selectTab={() => handleTabChange('vaccinationPricing')}
+        >
+          Vaccin
+        </TabButton>
+        <TabButton
+          active={tab === 'prescriptionPricing'}
+          selectTab={() => handleTabChange('prescriptionPricing')}
+        >
+          Recept
+        </TabButton>
+        <TabButton
+          active={tab === 'laserPricing'}
+          selectTab={() => handleTabChange('laserPricing')}
+        >
+          Laser
+        </TabButton>
       </div>
-      <section className='vac-info'>
-        <p>
-          Priserna gäller per dos, ej det totala för det rekommenderade antalet
-          utan alltid endast en dos
-        </p>
-        <ul>
-          <li>Recept 300 kr</li>
-          <li>Recept i samband med vaccination 200 kr</li>
-          <li>Endast genomgång av tidigare vaccinationer 200 kr</li>
-        </ul>
-        <h2>Uteblivet besök</h2>
-        <p>Debiteras med 200 kr</p>
-      </section>
-      <section>
-        <h1>Laser</h1>
-        <ul>
-          <li>Första laserbehandlingen: 650 kr</li>
-          <li>
-            Följande behandlingar: 500 kr eller enligt överenskommelse beroende
-            på tidsåtgång
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h1>Hembesök</h1>
+      <div className='my-6'>{TAB_DATA.find((t) => t.id === tab)?.content}</div>
+      <section className='my-12'>
+        <h1 className='text-2xl font-bold'>Hembesök</h1>
         <li>Hembesök kan göras enligt överenskommelse</li>
+        <div className='my-4'>
+          <p className='text-sm italic'>Uteblivet besök debiteras med 200 kr</p>
+        </div>
       </section>
     </div>
   );

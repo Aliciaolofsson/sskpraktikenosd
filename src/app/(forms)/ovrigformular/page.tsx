@@ -19,14 +19,14 @@ interface OtherForm {
 const questions: Question[] = [
   { label: 'För- och efternamn *', name: 'name', type: 'text' },
   { label: 'Födelsedatum *', name: 'birthYear', type: 'date' },
-  { label: 'Telefonnummer *', name: 'phoneNumber', type: 'text' },
-  { label: 'Din e-postadress', name: 'email', type: 'email' },
+  { label: 'Telefonnummer *', name: 'phoneNumber', type: 'tel' },
+  { label: 'Email adress', name: 'email', type: 'email' },
   {
     label: 'Vilken vaccination är aktuell? *',
     name: 'vaccination',
     type: 'text',
   },
-  { label: 'Vad väger du? (kg) *', name: 'weight', type: 'text' },
+  { label: 'Vad väger du? (kg) *', name: 'weight', type: 'number' },
   {
     label:
       'Behandlas Du med kortison eller får cellgiftsbehandling eller magsårsmedicin?',
@@ -44,7 +44,6 @@ const questions: Question[] = [
     options: ['Nej', 'Ja'],
     textAreaOnYes: true,
     onYesPlaceholder: 'vilken sjukdom',
-
   },
   {
     label:
@@ -89,7 +88,6 @@ const questions: Question[] = [
     options: ['Nej', 'Ja'],
   },
   { label: 'Övriga upplysningar', name: 'additionalInfo', type: 'textarea' },
-  
 ];
 
 interface FormData {
@@ -133,7 +131,7 @@ export default function OtherForm() {
 
   const renderJaTextarea = (question: Question) => (
     <textarea
-      className='mt-3'
+      className='mt-3 border-2 border-third'
       onChange={handleChange}
       required
       placeholder={`Skriv ${question.onYesPlaceholder}...`}
@@ -143,9 +141,10 @@ export default function OtherForm() {
   );
 
   return (
-    <div className=' md:mx-12 flex items items-center justify-center bg-pink-200'>
+    <div className='mt-20 mx-2 md:mx-12 flex flex-col items-center justify-center'>
+      <h1 className='text-4xl font-bold text-center'>Övriga vaccinationer</h1>
       <form
-        className='flex flex-col gap-2 lg:w-2/5 p-12 '
+        className='flex flex-col gap-2 md:w-3/5 lg:w-2/5 p-12 '
         onSubmit={handleSubmit}
       >
         {questions.map((question) => (
@@ -153,8 +152,11 @@ export default function OtherForm() {
             <label className='my-2 font-semibold'>{question.label}</label>
             {question.type === 'text' ||
             question.type === 'email' ||
+            question.type === 'number' ||
+            question.type === 'tel' ||
             question.type === 'date' ? (
               <input
+                className='border-2 border-third'
                 type={question.type}
                 name={question.name}
                 value={formData[question.name] || ''}
@@ -169,6 +171,7 @@ export default function OtherForm() {
                 required={question.label.includes('*')}
                 placeholder='Skriv här...'
                 rows={4}
+                className='border-2 border-third'
               />
             ) : (
               question.type === 'radio' &&
@@ -195,7 +198,15 @@ export default function OtherForm() {
             )}
           </div>
         ))}
-        <button className='bg-third p-2 my-5 rounded-lg font-semibold text-white hover:bg-thirdDark' type='submit'>Submit</button>
+        <button
+          className='bg-third p-2 my-5 rounded-lg font-semibold text-white hover:bg-thirdDark'
+          type='submit'
+        >
+          Submit
+        </button>
+        {emailSubmitted && (
+            <p className='text-xs mt-2 italic text-green-400'>Formulär skickat!</p>
+          )}
       </form>
     </div>
   );

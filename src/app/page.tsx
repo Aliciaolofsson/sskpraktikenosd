@@ -17,8 +17,8 @@ const Home: React.FunctionComponent = () => {
   return (
     <main>
       <header className='px-6 grid grid-cols-1 items-center md:grid-cols-2 gap-4 xl:mx-20'>
-        <div className='font-bold p-4 text-5xl'>
-          <h2 className='py-4'>
+        <div className='font-bold p-4'>
+          <h2 className='py-4 text-4xl md:text-5xl'>
             Kunskap och säkerhet <br />
             <span className=' text-secondary'>i trygg miljö</span>
           </h2>
@@ -30,7 +30,7 @@ const Home: React.FunctionComponent = () => {
             Vi har kompetens att bedöma om något behöver behandlas på högre
             vårdnivå.
           </p>
-          <button className='mt-12 text-xl bg-secondary text-white font-semibold p-3 px-5 rounded-lg hover:bg-thirdDarker'>
+          <button className='mt-12 text-xl bg-secondary text-white font-semibold p-3 px-5 rounded-lg hover:bg-third'>
             Boka tid
           </button>
         </div>

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Mail, Menu, Phone, X } from 'lucide-react';
 import NavLink from './NavLink';
 import MenuOverlay from './MenuOverlay';
 
@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <nav className='py-3'>
+    <nav className='mt-4 md:mt-10 mx-2'>
       <div className='flex px-5 justify-between items-center md:px-10'>
         <Link href={'/'}>
           <Image
@@ -30,23 +30,29 @@ const Navbar: React.FC = () => {
           {navItems.map((item, index) => (
             <li
               key={index}
-              className='text-md font-semibold ml-12 text-xl  hover:text-secondary'
+              className='text-md ml-12 text-md hover:text-secondary'
             >
               <NavLink href={item.link} title={item.label} />
             </li>
           ))}
+          <li className='mx-2 bg-third p-1 rounded-lg text-white'>
+          <Phone width={20} height={20} />
+          </li>
+          <li className='bg-third p-1 rounded-lg text-white'>
+            <Mail width={20} height={20}  />
+          </li>
         </ul>
         <div className='mobile-menu block md:hidden'>
           <button
             onClick={() => {
-              setNavbarOpen(!navbarOpen); // Toggle the state
+              setNavbarOpen(!navbarOpen);
             }}
             className='flex items-center p-3'
           >
             {navbarOpen ? (
-              <X width={40} height={40} />
+              <X width={40} height={40} strokeWidth={3} className='text-secondary' />
             ) : (
-              <Menu width={40} height={40} />
+              <Menu width={40} height={40} strokeWidth={3} className='text-secondary' />
             )}
           </button>
         </div>

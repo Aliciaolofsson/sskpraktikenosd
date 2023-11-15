@@ -8,7 +8,7 @@ interface NavLinkProps {
 
 export default function NavLink({ href, title }: NavLinkProps) {
   return (
-    <Link className='flex justify-center items-center font-semibold' href={href}>
+    <Link className='flex justify-center items-center font-semibold uppercase' href={href}>
       <h1>{title}</h1>
     </Link>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import InfoCard from './InfoCard';
+import Image from 'next/image';
 
 interface Vaccination {
   text: string;
@@ -22,28 +23,30 @@ const HomeMiddleSection: React.FC = () => {
     {
       id: 2,
       title: 'Professionell service',
-      subheader: 'Website',
+      subheader: 'hej ',
     },
     {
       id: 3,
-      title: 'Expert',
+      title: 'Legitimerade sjuksköterskor',
       subheader: 'This portfolio',
     },
   ];
 
   return (
     <section className='my-12'>
-      <div className='flex justify-center items-center'>
-        {projectData.map((info) => (
+      <div className='flex justify-center items-center bg-third p-24 mt-32 '>
+        {/* {projectData.map((info) => (
           <InfoCard
             key={info.id}
             title={info.title}
             subheader={info.subheader}
           />
-        ))}
+        ))} */}
       </div>
-      <h1 className='text-4xl lg:text-5xl text-center my-14 font-bold'>Vi erbjuder</h1>
-      <div className='px-10 lg:px-20 grid lg:grid-cols-2'>
+      <h1 className='text-4xl lg:text-5xl text-center my-14 font-bold'>
+        Vi erbjuder
+      </h1>
+      <div className='px-10 grid justify-center items-center lg:px-20 md:grid-cols-2'>
         <div className='flex justify-center flex-col items-center '>
           <h1 className='text-3xl font-bold mb-5'>Vaccinationer</h1>
           <ul className='lg:flex flex-col'>
@@ -59,6 +62,21 @@ const HomeMiddleSection: React.FC = () => {
             </h2>
           </ul>
         </div>
+        <Image
+          src={'/VaccineImg.svg'}
+          alt={''}
+          width={500}
+          height={500}
+          className=''
+
+        ></Image>
+        <Image
+          src={'/VaccinePhases.svg'}
+          alt={''}
+          width={600}
+          height={600}
+          className='hidden md:block'
+        ></Image>
         <div className='flex flex-col items-center'>
           <h1 className='text-3xl font-bold mb-5'>Medicinsk Laser</h1>
           <p className='mt-4'>
@@ -79,6 +97,13 @@ const HomeMiddleSection: React.FC = () => {
             anpassad så våra kunder ej möts i väntrummet. Gott om tid före och
             efter vaccination.
           </h2>
+          <Image
+            src={'/VaccinePhases.svg'}
+            alt={''}
+            width={500}
+            height={500}
+            className='md:hidden'
+          ></Image>
         </div>
       </div>
     </section>

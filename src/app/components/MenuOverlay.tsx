@@ -15,7 +15,7 @@ export default function MenuOverlay({ links, toggleNavbar }: MenuOverlayProps) {
     <ul className='items-center flex justify-center flex-col mt-10 md:hidden '>
       {links.map((item, index) => (
         <li
-          className='my-4 text-xl py-2 rounded-lg'
+          className='my-4 text-md md:text-xl py-2 rounded-lg'
           onClick={() => {
             toggleNavbar(false);
           }}
