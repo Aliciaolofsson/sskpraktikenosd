@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import HomeMiddleSection from './components/HomeMiddleSection';
-
+import Link from 'next/link';
 interface Home {
   text: string;
 }
@@ -30,9 +30,11 @@ const Home: React.FunctionComponent = () => {
             Vi har kompetens att bedöma om något behöver behandlas på högre
             vårdnivå.
           </p>
-          <button className='mt-12 text-xl bg-secondary text-white font-semibold p-3 px-5 rounded-lg hover:bg-third'>
-            Boka tid
-          </button>
+          <Link href={'/kontakta'}>
+            <button className='button mt-12 text-xl bg-secondary text-white font-semibold p-3 px-5 rounded-lg hover:bg-third'>
+              Boka tid
+            </button>
+          </Link>
         </div>
         <Image
           className='hidden md:block'
@@ -43,8 +45,8 @@ const Home: React.FunctionComponent = () => {
         ></Image>
       </header>
       <div>
-          <HomeMiddleSection />
-        </div>
+        <HomeMiddleSection />
+      </div>
     </main>
   );
 };

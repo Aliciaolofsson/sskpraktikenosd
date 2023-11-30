@@ -16,15 +16,10 @@ const Navbar: React.FC = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <nav className='mt-4 md:mt-10 mx-2'>
+    <nav className='mt-4 md:mt-10 md:mx-7'>
       <div className='flex px-5 justify-between items-center md:px-10'>
         <Link href={'/'}>
-          <Image
-            src={'/favicon.svg'}
-            alt={'AO'}
-            width={80}
-            height={80}
-          />
+          <Image src={'/favicon.svg'} alt={'AO'} width={80} height={80} />
         </Link>
         <ul className='hidden md:flex justify-center items-center'>
           {navItems.map((item, index) => (
@@ -35,12 +30,12 @@ const Navbar: React.FC = () => {
               <NavLink href={item.link} title={item.label} />
             </li>
           ))}
-          <li className='mx-2 bg-third p-1 rounded-lg text-white'>
-          <Phone width={20} height={20} />
-          </li>
-          <li className='bg-third p-1 rounded-lg text-white'>
-            <Mail width={20} height={20}  />
-          </li>
+          <a href='tel: 070 56 56 066' className='ml-6 mr-3 bg-secondary p-2 rounded-full text-white hover:bg-third'>
+            <Phone width={20} height={20} />
+          </a>
+          <a href='mailto:info@ssskpraktiken.se' className='bg-secondary p-2 rounded-full text-white hover:bg-third'>
+            <Mail width={20} height={20} />
+          </a>
         </ul>
         <div className='mobile-menu block md:hidden'>
           <button
@@ -50,14 +45,26 @@ const Navbar: React.FC = () => {
             className='flex items-center p-3'
           >
             {navbarOpen ? (
-              <X width={40} height={40} strokeWidth={3} className='text-secondary' />
+              <X
+                width={40}
+                height={40}
+                strokeWidth={3}
+                className='text-secondary'
+              />
             ) : (
-              <Menu width={40} height={40} strokeWidth={3} className='text-secondary' />
+              <Menu
+                width={40}
+                height={40}
+                strokeWidth={3}
+                className='text-secondary'
+              />
             )}
           </button>
         </div>
       </div>
-      {navbarOpen ? <MenuOverlay toggleNavbar={setNavbarOpen} links={navItems} /> : null}
+      {navbarOpen ? (
+        <MenuOverlay toggleNavbar={setNavbarOpen} links={navItems} />
+      ) : null}
     </nav>
   );
 };

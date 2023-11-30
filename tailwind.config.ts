@@ -25,7 +25,8 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [
     // Add any additional plugins here.

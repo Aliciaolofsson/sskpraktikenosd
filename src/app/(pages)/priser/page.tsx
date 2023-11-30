@@ -39,7 +39,7 @@ export default function Price() {
   const currentTab = TAB_DATA.find((t) => t.id === tab);
 
   return (
-    <div className='flex items-center flex-col p-5 my-5'>
+    <div className='flex items-center flex-col p-5'>
       <h1 className='text-4xl font-bold my-12'>Priser för våra tjänster</h1>
       <div className='flex'>
         <TabButton

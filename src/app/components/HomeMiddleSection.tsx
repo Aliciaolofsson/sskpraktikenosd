@@ -34,7 +34,7 @@ const HomeMiddleSection: React.FC = () => {
 
   return (
     <section className='my-12'>
-      <div className='flex justify-center items-center bg-third p-24 mt-32 '>
+      <div className='flex justify-center items-center bg-third p-24 mt-10 md:mt-24 '>
         {/* {projectData.map((info) => (
           <InfoCard
             key={info.id}
@@ -48,7 +48,7 @@ const HomeMiddleSection: React.FC = () => {
       </h1>
       <div className='px-10 grid justify-center items-center lg:px-20 md:grid-cols-2'>
         <div className='flex justify-center flex-col items-center '>
-          <h1 className='text-3xl font-bold mb-5'>Vaccinationer</h1>
+          <h1 className='text-4xl font-bold mb-5'>Vaccinationer</h1>
           <ul className='lg:flex flex-col'>
             {vaccin.map((list, index) => (
               <li className='m-2 flex items-center' key={index}>

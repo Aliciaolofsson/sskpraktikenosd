@@ -1,47 +1,61 @@
+import React from 'react';
 import ContactForm from '@/app/components/ContactForm';
-import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import Icon from '@/app/components/Icon';
+import { Clock, MapPin, Phone } from 'lucide-react';
 
-export default function Contact() {
-  return (
-    <div>
-      <div>
-        <h1 className='font-bold text-third text-4xl md:text-5xl p-12 lg:p-20 flex justify-center'>Kontakta oss</h1>
-      </div>
-      <div className='lg:grid grid-cols-2'>
+interface ContactItem {
+  title: string;
+  icon: React.ReactNode;
+  content: React.ReactNode;
+}
+
+const contactItems: ContactItem[] = [
+  {
+    title: 'Ring oss',
+    icon: <Phone />,
+    content: (
+      <>
+        <p>Du får tala med oss direkt</p>
+        <p>Svarar vi inte så kontaktar vi dig senast dagen därpå</p>
         <div>
-          <div className='px-10 lg:px-20 text-lg flex flex-col space-y-6 jusify-center'>
-            <section className=''>
-              <p>Du får tala med oss direkt</p>
-              <p>Svarar vi inte så kontaktar vi dig senast dagen därpå</p>
-              <li>
-                <a href='tel:0705656066'>070 - 56 56 066</a>
-              </li>
-            </section>
-            <section>
-              <p>Maila oss på</p>
-              <a
-                href='mailto:info@sskpraktiken.se'
-                className='font-semibold hover:text-secondary'
-              >
-                info@sskpraktiken.se
-              </a>
-            </section>
-            <section>
-              <p>Anpassas efter ditt behov så långt som möjligt</p>
-            </section>
-            <section>
-              <ul>
-               
-                <li>Hagvägen 18 i Östersund</li>
-                <li>Fri parkering utanför mottagningen</li>
-              </ul>
-            </section>
-          </div>
+          <a href='tel:0705656066'>070 - 56 56 066</a>
         </div>
-        <div className='flex justify-center'>
-      
+      </>
+    ),
+  },
+  {
+    title: 'Öppettider',
+    icon: <Clock />,
+    content: <p>Anpassas efter ditt behov så långt som möjligt</p>,
+  },
+  {
+    title: 'Hitta hit',
+    icon: <MapPin />,
+    content: (
+      <>
+        <p>Hagvägen 18 Östersund</p>
+        <p>Fri parkering utanför mottagningen</p>
+      </>
+    ),
+  },
+];
+
+const Contact: React.FC = () => {
+  return (
+    <div className='my-16'>
+      <div className='grid grid-cols-1 md:grid-cols-2'>
+        <div className='flex flex-col justify-center px-5 md:px-20 my-8'>
+          {contactItems.map((item, index) => (
+            <div key={index}>
+              <Icon title={item.title}>{item.icon}</Icon>
+              <div className='my-5'>{item.content}</div>
+            </div>
+          ))}
         </div>
+        <ContactForm />
       </div>
     </div>
   );
-}
+};
+
+export default Contact;
