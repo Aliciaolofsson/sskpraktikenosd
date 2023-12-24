@@ -3,12 +3,12 @@ import Link from 'next/link';
 interface NavLinkProps {
   href: string;
   title: string;
-  onClickEvent? : () => boolean;
+  activeLink? : () => void;
 }
 
-export default function NavLink({ href, title }: NavLinkProps) {
+export default function NavLink({ href, title, activeLink }: NavLinkProps) {
   return (
-    <Link className='flex justify-center items-center font-semibold uppercase' href={href}>
+    <Link onClick={activeLink} className='flex justify-center items-center font-semibold uppercase' href={href}>
       <h1>{title}</h1>
     </Link>
   );

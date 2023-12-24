@@ -1,7 +1,9 @@
+'use client';
 import React from 'react';
-import ContactForm from '@/app/components/ContactForm';
+import ContactForm from '@/app/(pages)/kontakta/ContactForm';
 import Icon from '@/app/components/Icon';
 import { Clock, MapPin, Phone } from 'lucide-react';
+import { Reveal } from '@/app/components/Reveal';
 
 interface ContactItem {
   title: string;
@@ -43,17 +45,17 @@ const contactItems: ContactItem[] = [
 const Contact: React.FC = () => {
   return (
     <div className='my-16'>
-      <div className='grid grid-cols-1 md:grid-cols-2'>
-        <div className='flex flex-col justify-center px-5 md:px-20 my-8'>
-          {contactItems.map((item, index) => (
-            <div key={index}>
-              <Icon title={item.title}>{item.icon}</Icon>
-              <div className='my-5'>{item.content}</div>
-            </div>
-          ))}
+        <div className='grid grid-cols-1 md:grid-cols-2 items-center justify-center'>
+          <div className='flex flex-col justify-center px-5 md:px-20 my-8'>
+            {contactItems.map((item, index) => (
+              <div key={index}>
+                <Icon title={item.title}>{item.icon}</Icon>
+                <div className='my-5'>{item.content}</div>
+              </div>
+            ))}
+          </div>
+          <ContactForm />
         </div>
-        <ContactForm />
-      </div>
     </div>
   );
 };

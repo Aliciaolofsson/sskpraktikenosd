@@ -14,7 +14,6 @@ const navItems = [
 
 const Navbar: React.FC = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
-
   return (
     <nav className='mt-4 md:mt-10 md:mx-7'>
       <div className='flex px-5 justify-between items-center md:px-10'>
@@ -27,7 +26,7 @@ const Navbar: React.FC = () => {
               key={index}
               className='text-md ml-12 text-md hover:text-secondary'
             >
-              <NavLink href={item.link} title={item.label} />
+              <NavLink href={item.link} title={item.label}/>
             </li>
           ))}
           <a href='tel: 070 56 56 066' className='ml-6 mr-3 bg-secondary p-2 rounded-full text-white hover:bg-third'>

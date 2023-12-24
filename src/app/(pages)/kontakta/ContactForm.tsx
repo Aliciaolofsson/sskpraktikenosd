@@ -1,6 +1,7 @@
 'use client';
 import { useState, FormEvent } from 'react';
 import Image from 'next/image';
+import { Reveal } from '@/app/components/Reveal';
 interface EmailSection {
   cols: number;
   rows: number;
